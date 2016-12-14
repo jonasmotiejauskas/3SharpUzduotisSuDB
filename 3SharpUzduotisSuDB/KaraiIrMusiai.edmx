@@ -4,11 +4,163 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="KaraiIrMusiai.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
-        <EntityContainer Name="KaraiIrMusiaiTargetContainer" >
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="KaraiIrMusiai.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="KaraiIrMusiaiStoreContainer">
+    <EntitySet Name="KarasSet" EntityType="KaraiIrMusiai.Store.KarasSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MusisSet" EntityType="KaraiIrMusiai.Store.MusisSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ValstybeSet" EntityType="KaraiIrMusiai.Store.ValstybeSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KarvedysSet" EntityType="KaraiIrMusiai.Store.KarvedysSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MusioDalyvisSet" EntityType="KaraiIrMusiai.Store.MusioDalyvisSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ValstybeMusis" Association="KaraiIrMusiai.Store.ValstybeMusis">
+      <End Role="Valstybe" EntitySet="ValstybeSet" />
+      <End Role="Musis" EntitySet="MusisSet" />
+    </AssociationSet>
+    <AssociationSet Name="KarasMusis" Association="KaraiIrMusiai.Store.KarasMusis">
+      <End Role="Karas" EntitySet="KarasSet" />
+      <End Role="Musis" EntitySet="MusisSet" />
+    </AssociationSet>
+    <AssociationSet Name="ValstybeKarvedys" Association="KaraiIrMusiai.Store.ValstybeKarvedys">
+      <End Role="Valstybe" EntitySet="ValstybeSet" />
+      <End Role="Karvedys" EntitySet="KarvedysSet" />
+    </AssociationSet>
+    <AssociationSet Name="KarvedysMusis1" Association="KaraiIrMusiai.Store.KarvedysMusis1">
+      <End Role="Karvedys" EntitySet="KarvedysSet" />
+      <End Role="Musis" EntitySet="MusisSet" />
+    </AssociationSet>
+    <AssociationSet Name="MusioDalyvisMusis" Association="KaraiIrMusiai.Store.MusioDalyvisMusis">
+      <End Role="MusioDalyvis" EntitySet="MusioDalyvisSet" />
+      <End Role="Musis" EntitySet="MusisSet" />
+    </AssociationSet>
+    <AssociationSet Name="MusioDalyvisKarvedys" Association="KaraiIrMusiai.Store.MusioDalyvisKarvedys">
+      <End Role="MusioDalyvis" EntitySet="MusioDalyvisSet" />
+      <End Role="Karvedys" EntitySet="KarvedysSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="KarasSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Pavadinimas" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Prasidejo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Baigesi" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MusisSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Pavadinimas" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Prasidejo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Baigesi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Vieta_Id" Type="int" Nullable="false" />
+    <Property Name="Karas_Id" Type="int" Nullable="false" />
+    <Property Name="Laimetojas_Id" Type="int" Nullable="false" />
+    <Property Name="MusioDalyvis_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ValstybeSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Pavadinimas" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Susikure" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Zlugo" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KarvedysSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vardas" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Pavarde" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Slapyvardis" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Gime" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Mire" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PulkuSkaicius" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Tautybe" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Tarnauja_Id" Type="int" Nullable="false" />
+    <Property Name="MusioDalyvis_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MusioDalyvisSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <Association Name="ValstybeMusis">
+    <End Role="Valstybe" Type="KaraiIrMusiai.Store.ValstybeSet" Multiplicity="1" />
+    <End Role="Musis" Type="KaraiIrMusiai.Store.MusisSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Valstybe">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Musis">
+        <PropertyRef Name="Vieta_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KarasMusis">
+    <End Role="Karas" Type="KaraiIrMusiai.Store.KarasSet" Multiplicity="1" />
+    <End Role="Musis" Type="KaraiIrMusiai.Store.MusisSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Karas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Musis">
+        <PropertyRef Name="Karas_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ValstybeKarvedys">
+    <End Role="Valstybe" Type="KaraiIrMusiai.Store.ValstybeSet" Multiplicity="1" />
+    <End Role="Karvedys" Type="KaraiIrMusiai.Store.KarvedysSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Valstybe">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Karvedys">
+        <PropertyRef Name="Tarnauja_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KarvedysMusis1">
+    <End Role="Karvedys" Type="KaraiIrMusiai.Store.KarvedysSet" Multiplicity="1" />
+    <End Role="Musis" Type="KaraiIrMusiai.Store.MusisSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Karvedys">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Musis">
+        <PropertyRef Name="Laimetojas_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MusioDalyvisMusis">
+    <End Role="MusioDalyvis" Type="KaraiIrMusiai.Store.MusioDalyvisSet" Multiplicity="1" />
+    <End Role="Musis" Type="KaraiIrMusiai.Store.MusisSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MusioDalyvis">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Musis">
+        <PropertyRef Name="MusioDalyvis_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MusioDalyvisKarvedys">
+    <End Role="MusioDalyvis" Type="KaraiIrMusiai.Store.MusioDalyvisSet" Multiplicity="1" />
+    <End Role="Karvedys" Type="KaraiIrMusiai.Store.KarvedysSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MusioDalyvis">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Karvedys">
+        <PropertyRef Name="MusioDalyvis_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="KaraiIrMusiai" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -129,13 +281,109 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
-        <Alias Key="Model" Value="KaraiIrMusiai" />
-        <Alias Key="Target" Value="KaraiIrMusiai.Store" />
-        <EntityContainerMapping CdmEntityContainer="KaraiIrMusiaiContainer" StorageEntityContainer="KaraiIrMusiaiTargetContainer">
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KaraiIrMusiaiStoreContainer" CdmEntityContainer="KaraiIrMusiaiContainer">
+    <EntitySetMapping Name="KarasSet">
+      <EntityTypeMapping TypeName="IsTypeOf(KaraiIrMusiai.Karas)">
+        <MappingFragment StoreEntitySet="KarasSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Pavadinimas" ColumnName="Pavadinimas" />
+          <ScalarProperty Name="Prasidejo" ColumnName="Prasidejo" />
+          <ScalarProperty Name="Baigesi" ColumnName="Baigesi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MusisSet">
+      <EntityTypeMapping TypeName="IsTypeOf(KaraiIrMusiai.Musis)">
+        <MappingFragment StoreEntitySet="MusisSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Pavadinimas" ColumnName="Pavadinimas" />
+          <ScalarProperty Name="Prasidejo" ColumnName="Prasidejo" />
+          <ScalarProperty Name="Baigesi" ColumnName="Baigesi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ValstybeSet">
+      <EntityTypeMapping TypeName="IsTypeOf(KaraiIrMusiai.Valstybe)">
+        <MappingFragment StoreEntitySet="ValstybeSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Pavadinimas" ColumnName="Pavadinimas" />
+          <ScalarProperty Name="Susikure" ColumnName="Susikure" />
+          <ScalarProperty Name="Zlugo" ColumnName="Zlugo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KarvedysSet">
+      <EntityTypeMapping TypeName="IsTypeOf(KaraiIrMusiai.Karvedys)">
+        <MappingFragment StoreEntitySet="KarvedysSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Vardas" ColumnName="Vardas" />
+          <ScalarProperty Name="Pavarde" ColumnName="Pavarde" />
+          <ScalarProperty Name="Slapyvardis" ColumnName="Slapyvardis" />
+          <ScalarProperty Name="Gime" ColumnName="Gime" />
+          <ScalarProperty Name="Mire" ColumnName="Mire" />
+          <ScalarProperty Name="PulkuSkaicius" ColumnName="PulkuSkaicius" />
+          <ScalarProperty Name="Tautybe" ColumnName="Tautybe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MusioDalyvisSet">
+      <EntityTypeMapping TypeName="IsTypeOf(KaraiIrMusiai.MusioDalyvis)">
+        <MappingFragment StoreEntitySet="MusioDalyvisSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ValstybeMusis" TypeName="KaraiIrMusiai.ValstybeMusis" StoreEntitySet="MusisSet">
+      <EndProperty Name="Valstybe">
+        <ScalarProperty Name="Id" ColumnName="Vieta_Id" />
+      </EndProperty>
+      <EndProperty Name="Musis">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="KarasMusis" TypeName="KaraiIrMusiai.KarasMusis" StoreEntitySet="MusisSet">
+      <EndProperty Name="Karas">
+        <ScalarProperty Name="Id" ColumnName="Karas_Id" />
+      </EndProperty>
+      <EndProperty Name="Musis">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ValstybeKarvedys" TypeName="KaraiIrMusiai.ValstybeKarvedys" StoreEntitySet="KarvedysSet">
+      <EndProperty Name="Valstybe">
+        <ScalarProperty Name="Id" ColumnName="Tarnauja_Id" />
+      </EndProperty>
+      <EndProperty Name="Karvedys">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="KarvedysMusis1" TypeName="KaraiIrMusiai.KarvedysMusis1" StoreEntitySet="MusisSet">
+      <EndProperty Name="Karvedys">
+        <ScalarProperty Name="Id" ColumnName="Laimetojas_Id" />
+      </EndProperty>
+      <EndProperty Name="Musis">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MusioDalyvisMusis" TypeName="KaraiIrMusiai.MusioDalyvisMusis" StoreEntitySet="MusisSet">
+      <EndProperty Name="MusioDalyvis">
+        <ScalarProperty Name="Id" ColumnName="MusioDalyvis_Id" />
+      </EndProperty>
+      <EndProperty Name="Musis">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MusioDalyvisKarvedys" TypeName="KaraiIrMusiai.MusioDalyvisKarvedys" StoreEntitySet="KarvedysSet">
+      <EndProperty Name="MusioDalyvis">
+        <ScalarProperty Name="Id" ColumnName="MusioDalyvis_Id" />
+      </EndProperty>
+      <EndProperty Name="Karvedys">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -149,6 +397,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
