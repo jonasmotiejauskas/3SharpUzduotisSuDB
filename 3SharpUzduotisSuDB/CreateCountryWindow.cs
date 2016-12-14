@@ -10,19 +10,26 @@ using System.Windows.Forms;
 
 namespace _3SharpUzduotisSuDB
 {
-    public partial class MainWindow : Form
+    public partial class CreateCountryWindow : Form
     {
+
         DatabaseInterface dbInter;
 
-        public MainWindow()
+        public CreateCountryWindow()
         {
             InitializeComponent();
+            dbInter = DatabaseInterface.Instance;
         }
 
-        private void createCountry_Click(object sender, EventArgs e)
+        private void createCountryButton_Click(object sender, EventArgs e)
         {
-            var createCountry = new CreateCountryWindow();
-            createCountry.ShowDialog();
+
+            this.Close();
+        }
+
+        private void cancelCreateCountryButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
