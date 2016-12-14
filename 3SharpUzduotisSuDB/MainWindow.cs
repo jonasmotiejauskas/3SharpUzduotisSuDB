@@ -24,5 +24,15 @@ namespace _3SharpUzduotisSuDB
             var createCountry = new CreateCountryWindow();
             createCountry.ShowDialog();
         }
+
+        private void refreshCountrysButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chooseCountryButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
