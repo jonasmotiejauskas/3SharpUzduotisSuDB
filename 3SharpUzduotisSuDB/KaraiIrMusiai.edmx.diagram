@@ -4,7 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5b363d70902542c184b406b4ae2f72f7" Name="Diagram1" />
+      <Diagram DiagramId="5b363d70902542c184b406b4ae2f72f7" Name="Diagram1" >
+        <EntityTypeShape EntityType="KaraiIrMusiai.Karas" Width="1.5" PointX="1" PointY="0.875" />
+        <EntityTypeShape EntityType="KaraiIrMusiai.Musis" Width="1.5" PointX="3.375" PointY="0.625" />
+        <EntityTypeShape EntityType="KaraiIrMusiai.Valstybe" Width="1.5" PointX="5.625" PointY="0.75" />
+        <EntityTypeShape EntityType="KaraiIrMusiai.Karvedys" Width="1.5" PointX="4.625" PointY="3.25" IsExpanded="true" />
+        <AssociationConnector Association="KaraiIrMusiai.ValstybeMusis" />
+        <AssociationConnector Association="KaraiIrMusiai.KarasMusis" />
+        <AssociationConnector Association="KaraiIrMusiai.ValstybeKarvedys" />
+        <AssociationConnector Association="KaraiIrMusiai.KarvedysMusis1" />
+        <EntityTypeShape EntityType="KaraiIrMusiai.MusioDalyvis" Width="1.5" PointX="1" PointY="3.25" />
+        <AssociationConnector Association="KaraiIrMusiai.MusioDalyvisMusis" />
+        <AssociationConnector Association="KaraiIrMusiai.MusioDalyvisKarvedys" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

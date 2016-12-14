@@ -13,7 +13,118 @@
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="KaraiIrMusiai" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="KaraiIrMusiaiContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="KarasSet" EntityType="KaraiIrMusiai.Karas" />
+          <EntitySet Name="MusisSet" EntityType="KaraiIrMusiai.Musis" />
+          <EntitySet Name="ValstybeSet" EntityType="KaraiIrMusiai.Valstybe" />
+          <EntitySet Name="KarvedysSet" EntityType="KaraiIrMusiai.Karvedys" />
+          <AssociationSet Name="ValstybeMusis" Association="KaraiIrMusiai.ValstybeMusis">
+            <End Role="Valstybe" EntitySet="ValstybeSet" />
+            <End Role="Musis" EntitySet="MusisSet" />
+          </AssociationSet>
+          <AssociationSet Name="KarasMusis" Association="KaraiIrMusiai.KarasMusis">
+            <End Role="Karas" EntitySet="KarasSet" />
+            <End Role="Musis" EntitySet="MusisSet" />
+          </AssociationSet>
+          <AssociationSet Name="ValstybeKarvedys" Association="KaraiIrMusiai.ValstybeKarvedys">
+            <End Role="Valstybe" EntitySet="ValstybeSet" />
+            <End Role="Karvedys" EntitySet="KarvedysSet" />
+          </AssociationSet>
+          <AssociationSet Name="KarvedysMusis1" Association="KaraiIrMusiai.KarvedysMusis1">
+            <End Role="Karvedys" EntitySet="KarvedysSet" />
+            <End Role="Musis" EntitySet="MusisSet" />
+          </AssociationSet>
+          <EntitySet Name="MusioDalyvisSet" EntityType="KaraiIrMusiai.MusioDalyvis" />
+          <AssociationSet Name="MusioDalyvisMusis" Association="KaraiIrMusiai.MusioDalyvisMusis">
+            <End Role="MusioDalyvis" EntitySet="MusioDalyvisSet" />
+            <End Role="Musis" EntitySet="MusisSet" />
+          </AssociationSet>
+          <AssociationSet Name="MusioDalyvisKarvedys" Association="KaraiIrMusiai.MusioDalyvisKarvedys">
+            <End Role="MusioDalyvis" EntitySet="MusioDalyvisSet" />
+            <End Role="Karvedys" EntitySet="KarvedysSet" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Karas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Musis" Relationship="KaraiIrMusiai.KarasMusis" FromRole="Karas" ToRole="Musis" />
+          <Property Name="Pavadinimas" Type="String" Nullable="false" />
+          <Property Name="Prasidejo" Type="String" Nullable="false" />
+          <Property Name="Baigesi" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Musis">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Vieta" Relationship="KaraiIrMusiai.ValstybeMusis" FromRole="Musis" ToRole="Valstybe" />
+          <NavigationProperty Name="Karas" Relationship="KaraiIrMusiai.KarasMusis" FromRole="Musis" ToRole="Karas" />
+          <NavigationProperty Name="Laimetojas" Relationship="KaraiIrMusiai.KarvedysMusis1" FromRole="Musis" ToRole="Karvedys" />
+          <Property Name="Pavadinimas" Type="String" Nullable="false" />
+          <Property Name="Prasidejo" Type="String" Nullable="false" />
+          <Property Name="Baigesi" Type="String" Nullable="false" />
+          <NavigationProperty Name="MusioDalyvis" Relationship="KaraiIrMusiai.MusioDalyvisMusis" FromRole="Musis" ToRole="MusioDalyvis" />
+        </EntityType>
+        <EntityType Name="Valstybe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="VykesMusis" Relationship="KaraiIrMusiai.ValstybeMusis" FromRole="Valstybe" ToRole="Musis" />
+          <NavigationProperty Name="Tarnautojas" Relationship="KaraiIrMusiai.ValstybeKarvedys" FromRole="Valstybe" ToRole="Karvedys" />
+          <Property Name="Pavadinimas" Type="String" Nullable="false" />
+          <Property Name="Susikure" Type="String" Nullable="false" />
+          <Property Name="Zlugo" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Karvedys">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Tarnauja" Relationship="KaraiIrMusiai.ValstybeKarvedys" FromRole="Karvedys" ToRole="Valstybe" />
+          <NavigationProperty Name="Laimejo" Relationship="KaraiIrMusiai.KarvedysMusis1" FromRole="Karvedys" ToRole="Musis" />
+          <Property Name="Vardas" Type="String" Nullable="false" />
+          <Property Name="Pavarde" Type="String" Nullable="false" />
+          <Property Name="Slapyvardis" Type="String" Nullable="false" />
+          <Property Name="Gime" Type="String" Nullable="false" />
+          <Property Name="Mire" Type="String" Nullable="false" />
+          <Property Name="PulkuSkaicius" Type="String" Nullable="false" />
+          <Property Name="Tautybe" Type="String" Nullable="false" />
+          <NavigationProperty Name="MusioDalyvis" Relationship="KaraiIrMusiai.MusioDalyvisKarvedys" FromRole="Karvedys" ToRole="MusioDalyvis" />
+        </EntityType>
+        <Association Name="ValstybeMusis">
+          <End Type="KaraiIrMusiai.Valstybe" Role="Valstybe" Multiplicity="1" />
+          <End Type="KaraiIrMusiai.Musis" Role="Musis" Multiplicity="*" />
+        </Association>
+        <Association Name="KarasMusis">
+          <End Type="KaraiIrMusiai.Karas" Role="Karas" Multiplicity="1" />
+          <End Type="KaraiIrMusiai.Musis" Role="Musis" Multiplicity="*" />
+        </Association>
+        <Association Name="ValstybeKarvedys">
+          <End Type="KaraiIrMusiai.Valstybe" Role="Valstybe" Multiplicity="1" />
+          <End Type="KaraiIrMusiai.Karvedys" Role="Karvedys" Multiplicity="*" />
+        </Association>
+        <Association Name="KarvedysMusis1">
+          <End Type="KaraiIrMusiai.Karvedys" Role="Karvedys" Multiplicity="1" />
+          <End Type="KaraiIrMusiai.Musis" Role="Musis" Multiplicity="*" />
+        </Association>
+        <EntityType Name="MusioDalyvis">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Musis" Relationship="KaraiIrMusiai.MusioDalyvisMusis" FromRole="MusioDalyvis" ToRole="Musis" />
+          <NavigationProperty Name="Karvedys" Relationship="KaraiIrMusiai.MusioDalyvisKarvedys" FromRole="MusioDalyvis" ToRole="Karvedys" />
+        </EntityType>
+        <Association Name="MusioDalyvisMusis">
+          <End Type="KaraiIrMusiai.MusioDalyvis" Role="MusioDalyvis" Multiplicity="1" />
+          <End Type="KaraiIrMusiai.Musis" Role="Musis" Multiplicity="*" />
+        </Association>
+        <Association Name="MusioDalyvisKarvedys">
+          <End Type="KaraiIrMusiai.MusioDalyvis" Role="MusioDalyvis" Multiplicity="1" />
+          <End Type="KaraiIrMusiai.Karvedys" Role="Karvedys" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
