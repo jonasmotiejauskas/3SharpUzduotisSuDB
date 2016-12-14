@@ -23,7 +23,7 @@ namespace _3SharpUzduotisSuDB
 
         private void createCountryButton_Click(object sender, EventArgs e)
         {
-
+            dbInter.InsertNewCountry(countryNameInput.Text, new DateTime(new Random().Next(1753, 3333), new Random().Next(1, 12), new Random().Next(1, 28)));
             this.Close();
         }
 
