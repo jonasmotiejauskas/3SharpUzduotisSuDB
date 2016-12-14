@@ -24,9 +24,9 @@ namespace _3SharpUzduotisSuDB
         public string Vardas { get; set; }
         public string Pavarde { get; set; }
         public string Slapyvardis { get; set; }
-        public string Gime { get; set; }
-        public string Mire { get; set; }
-        public string PulkuSkaicius { get; set; }
+        public System.DateTime Gime { get; set; }
+        public Nullable<System.DateTime> Mire { get; set; }
+        public int PulkuSkaicius { get; set; }
         public string Tautybe { get; set; }
     
         public virtual Valstybe Tarnauja { get; set; }

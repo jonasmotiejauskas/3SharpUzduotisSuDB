@@ -1,6 +1,6 @@
 ﻿namespace _3SharpUzduotisSuDB
 {
-    partial class Form1
+    partial class MainWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(530, 297);
+            this.ClientSize = new System.Drawing.Size(530, 379);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);

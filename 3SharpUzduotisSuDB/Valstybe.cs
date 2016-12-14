@@ -23,8 +23,8 @@ namespace _3SharpUzduotisSuDB
     
         public int Id { get; set; }
         public string Pavadinimas { get; set; }
-        public string Susikure { get; set; }
-        public string Zlugo { get; set; }
+        public System.DateTime Susikure { get; set; }
+        public Nullable<System.DateTime> Zlugo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Musis> VykesMusis { get; set; }

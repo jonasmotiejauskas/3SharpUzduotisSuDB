@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/14/2016 20:30:21
+-- Date Created: 12/14/2016 21:41:02
 -- Generated from EDMX file: C:\Users\Vartotojas\Desktop\3uzd\3SharpUzduotisSuDB\3SharpUzduotisSuDB\KaraiIrMusiai.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,44 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_ValstybeMusis]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MusisSet] DROP CONSTRAINT [FK_ValstybeMusis];
+GO
+IF OBJECT_ID(N'[dbo].[FK_KarasMusis]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MusisSet] DROP CONSTRAINT [FK_KarasMusis];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ValstybeKarvedys]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[KarvedysSet] DROP CONSTRAINT [FK_ValstybeKarvedys];
+GO
+IF OBJECT_ID(N'[dbo].[FK_KarvedysMusis1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MusisSet] DROP CONSTRAINT [FK_KarvedysMusis1];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MusioDalyvisMusis]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MusisSet] DROP CONSTRAINT [FK_MusioDalyvisMusis];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MusioDalyvisKarvedys]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[KarvedysSet] DROP CONSTRAINT [FK_MusioDalyvisKarvedys];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[KarasSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[KarasSet];
+GO
+IF OBJECT_ID(N'[dbo].[MusisSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MusisSet];
+GO
+IF OBJECT_ID(N'[dbo].[ValstybeSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ValstybeSet];
+GO
+IF OBJECT_ID(N'[dbo].[KarvedysSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[KarvedysSet];
+GO
+IF OBJECT_ID(N'[dbo].[MusioDalyvisSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MusioDalyvisSet];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -31,8 +64,8 @@ GO
 CREATE TABLE [dbo].[KarasSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Pavadinimas] nvarchar(max)  NOT NULL,
-    [Prasidejo] nvarchar(max)  NOT NULL,
-    [Baigesi] nvarchar(max)  NOT NULL
+    [Prasidejo] datetime  NOT NULL,
+    [Baigesi] datetime  NULL
 );
 GO
 
@@ -40,8 +73,8 @@ GO
 CREATE TABLE [dbo].[MusisSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Pavadinimas] nvarchar(max)  NOT NULL,
-    [Prasidejo] nvarchar(max)  NOT NULL,
-    [Baigesi] nvarchar(max)  NOT NULL,
+    [Prasidejo] datetime  NOT NULL,
+    [Baigesi] datetime  NULL,
     [Vieta_Id] int  NOT NULL,
     [Karas_Id] int  NOT NULL,
     [Laimetojas_Id] int  NOT NULL,
@@ -53,8 +86,8 @@ GO
 CREATE TABLE [dbo].[ValstybeSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Pavadinimas] nvarchar(max)  NOT NULL,
-    [Susikure] nvarchar(max)  NOT NULL,
-    [Zlugo] nvarchar(max)  NOT NULL
+    [Susikure] datetime  NOT NULL,
+    [Zlugo] datetime  NULL
 );
 GO
 
@@ -63,10 +96,10 @@ CREATE TABLE [dbo].[KarvedysSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Vardas] nvarchar(max)  NOT NULL,
     [Pavarde] nvarchar(max)  NOT NULL,
-    [Slapyvardis] nvarchar(max)  NOT NULL,
-    [Gime] nvarchar(max)  NOT NULL,
-    [Mire] nvarchar(max)  NOT NULL,
-    [PulkuSkaicius] nvarchar(max)  NOT NULL,
+    [Slapyvardis] nvarchar(max)  NULL,
+    [Gime] datetime  NOT NULL,
+    [Mire] datetime  NULL,
+    [PulkuSkaicius] int  NOT NULL,
     [Tautybe] nvarchar(max)  NOT NULL,
     [Tarnauja_Id] int  NOT NULL,
     [MusioDalyvis_Id] int  NOT NULL

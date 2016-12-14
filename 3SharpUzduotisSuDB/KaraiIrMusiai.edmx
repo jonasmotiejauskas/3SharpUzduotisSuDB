@@ -42,8 +42,8 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Pavadinimas" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Prasidejo" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Baigesi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Prasidejo" Type="datetime" Nullable="false" />
+    <Property Name="Baigesi" Type="datetime" Nullable="true" />
   </EntityType>
   <EntityType Name="MusisSet">
     <Key>
@@ -51,8 +51,8 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Pavadinimas" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Prasidejo" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Baigesi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Prasidejo" Type="datetime" Nullable="false" />
+    <Property Name="Baigesi" Type="datetime" Nullable="true" />
     <Property Name="Vieta_Id" Type="int" Nullable="false" />
     <Property Name="Karas_Id" Type="int" Nullable="false" />
     <Property Name="Laimetojas_Id" Type="int" Nullable="false" />
@@ -64,8 +64,8 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Pavadinimas" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Susikure" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Zlugo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Susikure" Type="datetime" Nullable="false" />
+    <Property Name="Zlugo" Type="datetime" Nullable="true" />
   </EntityType>
   <EntityType Name="KarvedysSet">
     <Key>
@@ -74,10 +74,10 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Vardas" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Pavarde" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Slapyvardis" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Gime" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Mire" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="PulkuSkaicius" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Slapyvardis" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Gime" Type="datetime" Nullable="false" />
+    <Property Name="Mire" Type="datetime" Nullable="true" />
+    <Property Name="PulkuSkaicius" Type="int" Nullable="false" />
     <Property Name="Tautybe" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Tarnauja_Id" Type="int" Nullable="false" />
     <Property Name="MusioDalyvis_Id" Type="int" Nullable="false" />
@@ -202,8 +202,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Musis" Relationship="KaraiIrMusiai.KarasMusis" FromRole="Karas" ToRole="Musis" />
           <Property Name="Pavadinimas" Type="String" Nullable="false" />
-          <Property Name="Prasidejo" Type="String" Nullable="false" />
-          <Property Name="Baigesi" Type="String" Nullable="false" />
+          <Property Name="Prasidejo" Type="DateTime" Nullable="false" />
+          <Property Name="Baigesi" Type="DateTime" Nullable="true" />
         </EntityType>
         <EntityType Name="Musis">
           <Key>
@@ -214,8 +214,8 @@
           <NavigationProperty Name="Karas" Relationship="KaraiIrMusiai.KarasMusis" FromRole="Musis" ToRole="Karas" />
           <NavigationProperty Name="Laimetojas" Relationship="KaraiIrMusiai.KarvedysMusis1" FromRole="Musis" ToRole="Karvedys" />
           <Property Name="Pavadinimas" Type="String" Nullable="false" />
-          <Property Name="Prasidejo" Type="String" Nullable="false" />
-          <Property Name="Baigesi" Type="String" Nullable="false" />
+          <Property Name="Prasidejo" Type="DateTime" Nullable="false" />
+          <Property Name="Baigesi" Type="DateTime" Nullable="true" />
           <NavigationProperty Name="MusioDalyvis" Relationship="KaraiIrMusiai.MusioDalyvisMusis" FromRole="Musis" ToRole="MusioDalyvis" />
         </EntityType>
         <EntityType Name="Valstybe">
@@ -226,8 +226,8 @@
           <NavigationProperty Name="VykesMusis" Relationship="KaraiIrMusiai.ValstybeMusis" FromRole="Valstybe" ToRole="Musis" />
           <NavigationProperty Name="Tarnautojas" Relationship="KaraiIrMusiai.ValstybeKarvedys" FromRole="Valstybe" ToRole="Karvedys" />
           <Property Name="Pavadinimas" Type="String" Nullable="false" />
-          <Property Name="Susikure" Type="String" Nullable="false" />
-          <Property Name="Zlugo" Type="String" Nullable="false" />
+          <Property Name="Susikure" Type="DateTime" Nullable="false" />
+          <Property Name="Zlugo" Type="DateTime" Nullable="true" />
         </EntityType>
         <EntityType Name="Karvedys">
           <Key>
@@ -238,10 +238,10 @@
           <NavigationProperty Name="Laimejo" Relationship="KaraiIrMusiai.KarvedysMusis1" FromRole="Karvedys" ToRole="Musis" />
           <Property Name="Vardas" Type="String" Nullable="false" />
           <Property Name="Pavarde" Type="String" Nullable="false" />
-          <Property Name="Slapyvardis" Type="String" Nullable="false" />
-          <Property Name="Gime" Type="String" Nullable="false" />
-          <Property Name="Mire" Type="String" Nullable="false" />
-          <Property Name="PulkuSkaicius" Type="String" Nullable="false" />
+          <Property Name="Slapyvardis" Type="String" Nullable="true" />
+          <Property Name="Gime" Type="DateTime" Nullable="false" />
+          <Property Name="Mire" Type="DateTime" Nullable="true" />
+          <Property Name="PulkuSkaicius" Type="Int32" Nullable="false" />
           <Property Name="Tautybe" Type="String" Nullable="false" />
           <NavigationProperty Name="MusioDalyvis" Relationship="KaraiIrMusiai.MusioDalyvisKarvedys" FromRole="Karvedys" ToRole="MusioDalyvis" />
         </EntityType>

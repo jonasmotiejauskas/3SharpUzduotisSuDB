@@ -16,8 +16,8 @@ namespace _3SharpUzduotisSuDB
     {
         public int Id { get; set; }
         public string Pavadinimas { get; set; }
-        public string Prasidejo { get; set; }
-        public string Baigesi { get; set; }
+        public System.DateTime Prasidejo { get; set; }
+        public Nullable<System.DateTime> Baigesi { get; set; }
     
         public virtual Valstybe Vieta { get; set; }
         public virtual Karas Karas { get; set; }
