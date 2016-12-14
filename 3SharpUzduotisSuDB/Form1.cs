@@ -15,7 +15,7 @@ namespace _3SharpUzduotisSuDB
         public Form1()
         {
             InitializeComponent();
-
         }
+
     }
 }
