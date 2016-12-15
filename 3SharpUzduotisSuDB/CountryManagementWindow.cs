@@ -35,14 +35,14 @@ namespace _3SharpUzduotisSuDB
         {
             if (changeNameInput != null)
             {
-                dbInter.UpdateCountrysName(country.Pavadinimas, changeNameInput.Text);
+                dbInter.UpdateCountrysName(country, changeNameInput.Text);
                 RefreshCountry(changeNameInput.Text);
             }
         }
 
         private void deleteCountryButton_Click(object sender, EventArgs e)
         {
-            dbInter.DeleteCountry(country.Pavadinimas);
+            dbInter.DeleteCountry(country);
             Hide();
             var menu = new MainWindow();
             menu.ShowDialog();
@@ -66,7 +66,17 @@ namespace _3SharpUzduotisSuDB
 
         private void addWarriorButton_Click(object sender, EventArgs e)
         {
-            if (warriorNameLabel.Text != "")
+            bool a = true;
+            foreach( var b in dbInter.GetAllWarriors())
+            {
+                if (b.Vardas == warriorNameLabel.Text)
+                {
+                    a = false;
+                }
+            }
+
+
+            if (warriorNameLabel.Text != "" && a)
             {
                 dbInter.GenerateNewWarrior(warriorNameLabel.Text, new Random().Next(1, 50), country);
             }

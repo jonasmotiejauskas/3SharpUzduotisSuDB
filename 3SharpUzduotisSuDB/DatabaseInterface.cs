@@ -82,14 +82,14 @@ namespace _3SharpUzduotisSuDB
             return allNames;
         }
 
-        public void DeleteCountry(string name)
+        public void DeleteCountry(Valstybe name)
         {
             SqlCommand delete = new SqlCommand();
             delete.Connection = cn;
             delete.CommandType = System.Data.CommandType.Text;
-            delete.CommandText = "DELETE FROM ValstybeSet WHERE Pavadinimas = @PAV";
+            delete.CommandText = "DELETE FROM ValstybeSet WHERE Id = @PAV";
 
-            delete.Parameters.AddWithValue("@PAV", name);
+            delete.Parameters.AddWithValue("@PAV", name.Id);
 
             SqlDataAdapter da = new SqlDataAdapter("Select Pavadinimas FROM ValstybeSet", cn);
             da.DeleteCommand = delete;
@@ -103,18 +103,22 @@ namespace _3SharpUzduotisSuDB
             da.Dispose();
         }
 
-        public void UpdateCountrysName(string oldName, string newName)
-         {
+        public void UpdateCountrysName(Valstybe old, string newName)
+        {
+
+
+
              SqlCommand update = new SqlCommand();
              update.Connection = cn;
              update.CommandType = System.Data.CommandType.Text;
-             update.CommandText = "UPDATE ValstybeSet SET Pavadinimas = @NEWPAV";
+             update.CommandText = "UPDATE ValstybeSet SET Pavadinimas = @NEWPAV WHERE Id = @PAV";
  
              
              update.Parameters.Add(new SqlParameter("@NEWPAV", SqlDbType.NVarChar, 20, "Pavadinimas"));
+             update.Parameters.AddWithValue("@PAV", old.Id); 
 
-             SqlDataAdapter da = new SqlDataAdapter("Select Id, Pavadinimas, Susikure FROM ValstybeSet WHERE Pavadinimas = '"+oldName+"'" , cn);
-             //update.Parameters.AddWithValue("@PAV", oldName);
+             SqlDataAdapter da = new SqlDataAdapter("Select Id, Pavadinimas, Susikure FROM ValstybeSet" , cn);
+
              da.UpdateCommand = update;
  
              DataSet ds = new DataSet();
@@ -124,8 +128,6 @@ namespace _3SharpUzduotisSuDB
  
              da.Update(ds.Tables[0]);
              da.Dispose();
-             
-
          }
 
     Valstybe country;
