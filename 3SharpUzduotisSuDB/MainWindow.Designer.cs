@@ -33,7 +33,7 @@
             this.title3 = new System.Windows.Forms.Label();
             this.createCountry = new System.Windows.Forms.Button();
             this.chooseCountryButton = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.countrys = new System.Windows.Forms.ComboBox();
             this.refreshCountrysButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -69,7 +69,7 @@
             // 
             // createCountry
             // 
-            this.createCountry.Location = new System.Drawing.Point(199, 300);
+            this.createCountry.Location = new System.Drawing.Point(199, 261);
             this.createCountry.Name = "createCountry";
             this.createCountry.Size = new System.Drawing.Size(135, 23);
             this.createCountry.TabIndex = 3;
@@ -87,13 +87,13 @@
             this.chooseCountryButton.UseVisualStyleBackColor = true;
             this.chooseCountryButton.Click += new System.EventHandler(this.chooseCountryButton_Click);
             // 
-            // comboBox1
+            // countrys
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(199, 205);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(135, 21);
-            this.comboBox1.TabIndex = 5;
+            this.countrys.FormattingEnabled = true;
+            this.countrys.Location = new System.Drawing.Point(199, 205);
+            this.countrys.Name = "countrys";
+            this.countrys.Size = new System.Drawing.Size(135, 21);
+            this.countrys.TabIndex = 5;
             // 
             // refreshCountrysButton
             // 
@@ -111,7 +111,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(530, 379);
             this.Controls.Add(this.refreshCountrysButton);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.countrys);
             this.Controls.Add(this.chooseCountryButton);
             this.Controls.Add(this.createCountry);
             this.Controls.Add(this.title3);
@@ -133,7 +133,7 @@
         private System.Windows.Forms.Label title3;
         private System.Windows.Forms.Button createCountry;
         private System.Windows.Forms.Button chooseCountryButton;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox countrys;
         private System.Windows.Forms.Button refreshCountrysButton;
     }
 }

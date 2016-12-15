@@ -2,6 +2,7 @@
 using System.Configuration;
 using System;
 using System.Data;
+using System.Collections.Generic;
 
 namespace _3SharpUzduotisSuDB
 {
@@ -55,6 +56,27 @@ namespace _3SharpUzduotisSuDB
 
             da.Update(ds.Tables[0]);
             da.Dispose();
+        }
+
+        public List<string> getAllCountryNames()
+        {
+            List<string> allNames = new List<string>();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            SqlCommand command = new SqlCommand("SELECT Pavadinimas FROM ValstybeSet", cn);
+
+            da.SelectCommand = command;
+
+            DataSet ds = new DataSet();
+            da.Fill(ds, "ValstybeSet");
+
+            da.Dispose();
+
+            foreach (DataRow item in ds.Tables[0].Rows)
+            {
+                allNames.Add(item["Pavadinimas"].ToString());
+            }
+            return allNames;
         }
     }
 }
