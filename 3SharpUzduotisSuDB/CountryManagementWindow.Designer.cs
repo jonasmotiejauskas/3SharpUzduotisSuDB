@@ -147,6 +147,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::_3SharpUzduotisSuDB.Properties.Resources.imgres;
             this.ClientSize = new System.Drawing.Size(530, 379);
             this.Controls.Add(this.warriorTrainButton);
             this.Controls.Add(this.executionButton);

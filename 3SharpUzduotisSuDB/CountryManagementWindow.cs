@@ -21,6 +21,7 @@ namespace _3SharpUzduotisSuDB
             InitializeComponent();
             RefreshCountry(countryName);
             LoadWarriors();
+            BackgroundImageLayout = ImageLayout.Stretch;
         }
 
 

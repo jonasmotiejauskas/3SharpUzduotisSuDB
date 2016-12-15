@@ -187,6 +187,7 @@
       <LastGenOutput>KaraiIrMusiai.cs</LastGenOutput>
       <DependentUpon>KaraiIrMusiai.edmx</DependentUpon>
     </Content>
+    <None Include="Resources\imgres.jpg" />
     <None Include="Resources\images.jpg" />
   </ItemGroup>
   <ItemGroup>
