@@ -104,49 +104,48 @@ namespace _3SharpUzduotisSuDB
         }
 
         public void UpdateCountrysName(string oldName, string newName)
-        {
-            SqlCommand update = new SqlCommand();
-            update.Connection = cn;
-            update.CommandType = System.Data.CommandType.Text;
-            update.CommandText = "UPDATE ValstybeSet SET Pavadinimas = @NEWPAV WHERE Pavadinimas = @PAV";
+         {
+             SqlCommand update = new SqlCommand();
+             update.Connection = cn;
+             update.CommandType = System.Data.CommandType.Text;
+             update.CommandText = "UPDATE ValstybeSet SET Pavadinimas = @NEWPAV WHERE Pavadinimas = @PAV";
+ 
+             update.Parameters.AddWithValue("@PAV", oldName);
+             update.Parameters.Add(new SqlParameter("@NEWPAV", SqlDbType.NVarChar, 20, "Pavadinimas"));
+ 
+             SqlDataAdapter da = new SqlDataAdapter("Select Pavadinimas FROM ValstybeSet", cn);
+             da.UpdateCommand = update;
+ 
+             DataSet ds = new DataSet();
+             da.Fill(ds, "ValstybeSet");
+ 
+             ds.Tables[0].Rows[0]["Pavadinimas"] = newName;
+ 
+             da.Update(ds.Tables[0]);
+             da.Dispose();
+         }
 
-            update.Parameters.AddWithValue("@PAV", oldName);
-            update.Parameters.Add(new SqlParameter("@NEWPAV", SqlDbType.NVarChar, 20, "Pavadinimas"));
-
-            SqlDataAdapter da = new SqlDataAdapter("Select Pavadinimas FROM ValstybeSet", cn);
-            da.UpdateCommand = update;
-
-            DataSet ds = new DataSet();
-            da.Fill(ds, "ValstybeSet");
-
-            ds.Tables[0].Rows[0]["Pavadinimas"] = newName;
-
-            da.Update(ds.Tables[0]);
-            da.Dispose();
-        }
-
-        
+    Valstybe country;
 
         public Valstybe GetCountryByName(string countryName)
-        {
-            Valstybe country = new Valstybe();
+        { 
             var query = (from b in db.ValstybeSet
-                             where b.Pavadinimas == countryName
-                             orderby b.Id
-                             select b).Skip(0).Take(1);
+                         where b.Pavadinimas == countryName
+                         orderby b.Id
+                         select b).Skip(0).Take(1);
 
-                foreach (var b in query)
-                {
-                    country = b;
-                }
+            foreach (var b in query)
+            {
+                country = b;
+            }
             return country;
         }
 
         public void GenerateNewWarrior(string name, int power, Valstybe country)
         {
-                var warrior = new Karvedys { Vardas = name, PulkuSkaicius = power, Tarnauja = country };
-                db.KarvedysSet.Add(warrior);
-                db.SaveChanges();
+            var warrior = new Karvedys { Vardas = name, PulkuSkaicius = power, Tarnauja = country };
+            db.KarvedysSet.Add(warrior);
+            db.SaveChanges();
         }
 
         public List<Karvedys> GetAllWarriors()
@@ -179,7 +178,7 @@ namespace _3SharpUzduotisSuDB
 
             foreach (var b in query)
             {
-                if(b.Vardas == warriorName)
+                if (b.Vardas == warriorName)
                 {
                     db.KarvedysSet.Remove(b);
                 }

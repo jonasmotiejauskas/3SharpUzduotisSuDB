@@ -140,6 +140,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EntityDeploy Include="KaraiIrMusiai.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -186,6 +187,7 @@
       <LastGenOutput>KaraiIrMusiai.cs</LastGenOutput>
       <DependentUpon>KaraiIrMusiai.edmx</DependentUpon>
     </Content>
+    <None Include="Resources\images.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateCountryWindow));
             this.cNameLabel = new System.Windows.Forms.Label();
             this.countryNameInput = new System.Windows.Forms.TextBox();
             this.createCountryButton = new System.Windows.Forms.Button();
@@ -81,6 +82,7 @@
             this.Controls.Add(this.countryNameInput);
             this.Controls.Add(this.cNameLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CreateCountryWindow";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.title1 = new System.Windows.Forms.Label();
             this.title2 = new System.Windows.Forms.Label();
             this.title3 = new System.Windows.Forms.Label();
@@ -130,6 +131,7 @@
             this.Controls.Add(this.title2);
             this.Controls.Add(this.title1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "History Simulator";

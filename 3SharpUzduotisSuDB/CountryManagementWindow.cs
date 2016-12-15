@@ -59,7 +59,7 @@ namespace _3SharpUzduotisSuDB
         private void RefreshCountry(string countryName)
         {
             country = dbInter.GetCountryByName(countryName);
-            countryNameLabel.Text = country.Pavadinimas;
+            countryNameLabel.Text = countryName;
             countryDates.Text = country.Susikure.ToShortDateString();
         }
 

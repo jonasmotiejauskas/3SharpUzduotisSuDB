@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CountryManagementWindow));
             this.changeCountryNameButton = new System.Windows.Forms.Button();
             this.deleteCountryButton = new System.Windows.Forms.Button();
             this.backToMenuButton = new System.Windows.Forms.Button();
@@ -159,6 +160,7 @@
             this.Controls.Add(this.deleteCountryButton);
             this.Controls.Add(this.changeCountryNameButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "CountryManagementWindow";
             this.Text = "My Country";
