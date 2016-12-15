@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,6 +20,8 @@ namespace _3SharpUzduotisSuDB
             InitializeComponent();
             List<string> countryNameList = dbInter.getAllCountryNames();
             countrys.DataSource = countryNameList;
+            SoundPlayer music = new SoundPlayer(@"C:\Users\Vartotojas\Desktop\3uzd\3SharpUzduotisSuDB\3SharpUzduotisSuDB\Resources\BackgroundMusic.wav");
+            music.PlayLooping();
         }
 
         private void createCountry_Click(object sender, EventArgs e)
