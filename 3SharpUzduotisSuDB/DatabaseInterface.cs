@@ -12,6 +12,7 @@ namespace _3SharpUzduotisSuDB
         static private SqlConnection cn = new SqlConnection();
 
         private static DatabaseInterface instance;
+        KaraiIrMusiaiContainer db = new KaraiIrMusiaiContainer();
 
         private DatabaseInterface() { }
 
@@ -123,11 +124,10 @@ namespace _3SharpUzduotisSuDB
             da.Dispose();
         }
 
+        Valstybe country;
+
         public Valstybe GetCountryByName(string countryName)
         {
-            var country = new Valstybe();
-            using (var db = new KaraiIrMusiaiContainer())
-            {
                 var query = (from b in db.ValstybeSet
                              where b.Pavadinimas == countryName
                              orderby b.Id
@@ -137,8 +137,14 @@ namespace _3SharpUzduotisSuDB
                 {
                     country = b;
                 }
-            }
             return country;
+        }
+
+        public void GenerateNewWarrior(string name, int power, Valstybe country)
+        {
+                var warrior = new Karvedys { Vardas = name, PulkuSkaicius = power, Tarnauja = country };
+                db.KarvedysSet.Add(warrior);
+                db.SaveChanges();
         }
     }
 }

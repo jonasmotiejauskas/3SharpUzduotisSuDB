@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/15/2016 01:14:58
+-- Date Created: 12/15/2016 06:53:13
 -- Generated from EDMX file: C:\Users\Vartotojas\Desktop\3uzd\3SharpUzduotisSuDB\3SharpUzduotisSuDB\KaraiIrMusiai.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [KaraiIrMusiai];
+USE [C:\USERS\VARTOTOJAS\DOCUMENTS\KARAIIRMUSIAI.MDF];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -76,9 +76,9 @@ CREATE TABLE [dbo].[MusisSet] (
     [Prasidejo] datetime  NOT NULL,
     [Baigesi] datetime  NULL,
     [Vieta_Id] int  NOT NULL,
-    [Karas_Id] int  NOT NULL,
+    [Karas_Id] int  NULL,
     [Laimetojas_Id] int  NOT NULL,
-    [MusioDalyvis_Id] int  NOT NULL
+    [MusioDalyvis_Id] int  NULL
 );
 GO
 
@@ -95,14 +95,14 @@ GO
 CREATE TABLE [dbo].[KarvedysSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Vardas] nvarchar(max)  NOT NULL,
-    [Pavarde] nvarchar(max)  NOT NULL,
+    [Pavarde] nvarchar(max)  NULL,
     [Slapyvardis] nvarchar(max)  NULL,
-    [Gime] datetime  NOT NULL,
+    [Gime] datetime  NULL,
     [Mire] datetime  NULL,
     [PulkuSkaicius] int  NOT NULL,
-    [Tautybe] nvarchar(max)  NOT NULL,
+    [Tautybe] nvarchar(max)  NULL,
     [Tarnauja_Id] int  NOT NULL,
-    [MusioDalyvis_Id] int  NOT NULL
+    [MusioDalyvis_Id] int  NULL
 );
 GO
 
@@ -186,7 +186,7 @@ ADD CONSTRAINT [FK_ValstybeKarvedys]
     FOREIGN KEY ([Tarnauja_Id])
     REFERENCES [dbo].[ValstybeSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ValstybeKarvedys'

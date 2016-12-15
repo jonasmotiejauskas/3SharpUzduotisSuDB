@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="KaraiIrMusiai.Karas" Width="1.5" PointX="1" PointY="0.875" />
         <EntityTypeShape EntityType="KaraiIrMusiai.Musis" Width="1.5" PointX="3.375" PointY="0.625" />
         <EntityTypeShape EntityType="KaraiIrMusiai.Valstybe" Width="1.5" PointX="5.625" PointY="0.75" />
-        <EntityTypeShape EntityType="KaraiIrMusiai.Karvedys" Width="1.5" PointX="4.625" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KaraiIrMusiai.Karvedys" Width="1.5" PointX="5.375" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="KaraiIrMusiai.ValstybeMusis" />
         <AssociationConnector Association="KaraiIrMusiai.KarasMusis" />
         <AssociationConnector Association="KaraiIrMusiai.ValstybeKarvedys" />

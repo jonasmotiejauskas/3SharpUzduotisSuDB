@@ -20,6 +20,13 @@ namespace _3SharpUzduotisSuDB
             RefreshCountry(countryName);
         }
 
+
+        private void CountryManagementWindow_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
         private void changeCountryName_Click(object sender, EventArgs e)
         {
             if (changeNameInput != null)
@@ -53,14 +60,13 @@ namespace _3SharpUzduotisSuDB
             countryDates.Text = country.Susikure.ToShortDateString();
         }
 
-        private void CountryManagementWindow_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void addWarriorButton_Click(object sender, EventArgs e)
         {
-            
+            if (warriorNameLabel.Text != "")
+            {
+                dbInter.GenerateNewWarrior(warriorNameLabel.Text, new Random().Next(1, 50), country);
+            }
         }
+
     }
 }

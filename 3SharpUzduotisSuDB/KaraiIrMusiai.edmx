@@ -54,9 +54,9 @@
     <Property Name="Prasidejo" Type="datetime" Nullable="false" />
     <Property Name="Baigesi" Type="datetime" Nullable="true" />
     <Property Name="Vieta_Id" Type="int" Nullable="false" />
-    <Property Name="Karas_Id" Type="int" Nullable="false" />
+    <Property Name="Karas_Id" Type="int" Nullable="true" />
     <Property Name="Laimetojas_Id" Type="int" Nullable="false" />
-    <Property Name="MusioDalyvis_Id" Type="int" Nullable="false" />
+    <Property Name="MusioDalyvis_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="ValstybeSet">
     <Key>
@@ -73,14 +73,14 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Vardas" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Pavarde" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Pavarde" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Slapyvardis" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="Gime" Type="datetime" Nullable="false" />
+    <Property Name="Gime" Type="datetime" Nullable="true" />
     <Property Name="Mire" Type="datetime" Nullable="true" />
     <Property Name="PulkuSkaicius" Type="int" Nullable="false" />
-    <Property Name="Tautybe" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Tautybe" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Tarnauja_Id" Type="int" Nullable="false" />
-    <Property Name="MusioDalyvis_Id" Type="int" Nullable="false" />
+    <Property Name="MusioDalyvis_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="MusioDalyvisSet">
     <Key>
@@ -101,7 +101,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="KarasMusis">
-    <End Role="Karas" Type="KaraiIrMusiai.Store.KarasSet" Multiplicity="1" />
+    <End Role="Karas" Type="KaraiIrMusiai.Store.KarasSet" Multiplicity="0..1" />
     <End Role="Musis" Type="KaraiIrMusiai.Store.MusisSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Karas">
@@ -113,7 +113,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="ValstybeKarvedys">
-    <End Role="Valstybe" Type="KaraiIrMusiai.Store.ValstybeSet" Multiplicity="1" />
+    <End Role="Valstybe" Type="KaraiIrMusiai.Store.ValstybeSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Karvedys" Type="KaraiIrMusiai.Store.KarvedysSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Valstybe">
@@ -137,7 +139,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="MusioDalyvisMusis">
-    <End Role="MusioDalyvis" Type="KaraiIrMusiai.Store.MusioDalyvisSet" Multiplicity="1" />
+    <End Role="MusioDalyvis" Type="KaraiIrMusiai.Store.MusioDalyvisSet" Multiplicity="0..1" />
     <End Role="Musis" Type="KaraiIrMusiai.Store.MusisSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MusioDalyvis">
@@ -149,7 +151,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="MusioDalyvisKarvedys">
-    <End Role="MusioDalyvis" Type="KaraiIrMusiai.Store.MusioDalyvisSet" Multiplicity="1" />
+    <End Role="MusioDalyvis" Type="KaraiIrMusiai.Store.MusioDalyvisSet" Multiplicity="0..1" />
     <End Role="Karvedys" Type="KaraiIrMusiai.Store.KarvedysSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MusioDalyvis">
@@ -237,12 +239,12 @@
           <NavigationProperty Name="Tarnauja" Relationship="KaraiIrMusiai.ValstybeKarvedys" FromRole="Karvedys" ToRole="Valstybe" />
           <NavigationProperty Name="Laimejo" Relationship="KaraiIrMusiai.KarvedysMusis1" FromRole="Karvedys" ToRole="Musis" />
           <Property Name="Vardas" Type="String" Nullable="false" />
-          <Property Name="Pavarde" Type="String" Nullable="false" />
+          <Property Name="Pavarde" Type="String" Nullable="true" />
           <Property Name="Slapyvardis" Type="String" Nullable="true" />
-          <Property Name="Gime" Type="DateTime" Nullable="false" />
+          <Property Name="Gime" Type="DateTime" Nullable="true" />
           <Property Name="Mire" Type="DateTime" Nullable="true" />
           <Property Name="PulkuSkaicius" Type="Int32" Nullable="false" />
-          <Property Name="Tautybe" Type="String" Nullable="false" />
+          <Property Name="Tautybe" Type="String" Nullable="true" />
           <NavigationProperty Name="MusioDalyvis" Relationship="KaraiIrMusiai.MusioDalyvisKarvedys" FromRole="Karvedys" ToRole="MusioDalyvis" />
         </EntityType>
         <Association Name="ValstybeMusis">
@@ -250,12 +252,15 @@
           <End Type="KaraiIrMusiai.Musis" Role="Musis" Multiplicity="*" />
         </Association>
         <Association Name="KarasMusis">
-          <End Type="KaraiIrMusiai.Karas" Role="Karas" Multiplicity="1" />
+          <End Type="KaraiIrMusiai.Karas" Role="Karas" Multiplicity="0..1" />
           <End Type="KaraiIrMusiai.Musis" Role="Musis" Multiplicity="*" />
         </Association>
         <Association Name="ValstybeKarvedys">
-          <End Type="KaraiIrMusiai.Valstybe" Role="Valstybe" Multiplicity="1" />
-          <End Type="KaraiIrMusiai.Karvedys" Role="Karvedys" Multiplicity="*" />
+          <End Type="KaraiIrMusiai.Valstybe" Role="Valstybe" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="KaraiIrMusiai.Karvedys" Role="Karvedys" Multiplicity="*" >
+          </End>
         </Association>
         <Association Name="KarvedysMusis1">
           <End Type="KaraiIrMusiai.Karvedys" Role="Karvedys" Multiplicity="1" />
@@ -270,11 +275,11 @@
           <NavigationProperty Name="Karvedys" Relationship="KaraiIrMusiai.MusioDalyvisKarvedys" FromRole="MusioDalyvis" ToRole="Karvedys" />
         </EntityType>
         <Association Name="MusioDalyvisMusis">
-          <End Type="KaraiIrMusiai.MusioDalyvis" Role="MusioDalyvis" Multiplicity="1" />
+          <End Type="KaraiIrMusiai.MusioDalyvis" Role="MusioDalyvis" Multiplicity="0..1" />
           <End Type="KaraiIrMusiai.Musis" Role="Musis" Multiplicity="*" />
         </Association>
         <Association Name="MusioDalyvisKarvedys">
-          <End Type="KaraiIrMusiai.MusioDalyvis" Role="MusioDalyvis" Multiplicity="1" />
+          <End Type="KaraiIrMusiai.MusioDalyvis" Role="MusioDalyvis" Multiplicity="0..1" />
           <End Type="KaraiIrMusiai.Karvedys" Role="Karvedys" Multiplicity="*" />
         </Association>
       </Schema>
@@ -349,6 +354,7 @@
       <EndProperty Name="Musis">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="Karas_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="ValstybeKarvedys" TypeName="KaraiIrMusiai.ValstybeKarvedys" StoreEntitySet="KarvedysSet">
       <EndProperty Name="Valstybe">
@@ -373,6 +379,7 @@
       <EndProperty Name="Musis">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="MusioDalyvis_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="MusioDalyvisKarvedys" TypeName="KaraiIrMusiai.MusioDalyvisKarvedys" StoreEntitySet="KarvedysSet">
       <EndProperty Name="MusioDalyvis">
@@ -381,6 +388,7 @@
       <EndProperty Name="Karvedys">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="MusioDalyvis_Id" IsNull="false" />
     </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
