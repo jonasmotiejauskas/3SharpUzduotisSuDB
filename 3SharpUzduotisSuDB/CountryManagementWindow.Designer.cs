@@ -36,6 +36,8 @@
             this.countryDates = new System.Windows.Forms.Label();
             this.addWarriorButton = new System.Windows.Forms.Button();
             this.warriorNameLabel = new System.Windows.Forms.TextBox();
+            this.thisCountryWarriors = new System.Windows.Forms.ComboBox();
+            this.executionButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // changeCountryNameButton
@@ -111,11 +113,31 @@
             this.warriorNameLabel.Size = new System.Drawing.Size(100, 20);
             this.warriorNameLabel.TabIndex = 7;
             // 
+            // thisCountryWarriors
+            // 
+            this.thisCountryWarriors.FormattingEnabled = true;
+            this.thisCountryWarriors.Location = new System.Drawing.Point(6, 296);
+            this.thisCountryWarriors.Name = "thisCountryWarriors";
+            this.thisCountryWarriors.Size = new System.Drawing.Size(129, 21);
+            this.thisCountryWarriors.TabIndex = 8;
+            // 
+            // executionButton
+            // 
+            this.executionButton.Location = new System.Drawing.Point(6, 344);
+            this.executionButton.Name = "executionButton";
+            this.executionButton.Size = new System.Drawing.Size(129, 23);
+            this.executionButton.TabIndex = 9;
+            this.executionButton.Text = "Execute A Warrior";
+            this.executionButton.UseVisualStyleBackColor = true;
+            this.executionButton.Click += new System.EventHandler(this.executionButton_Click);
+            // 
             // CountryManagementWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(530, 379);
+            this.Controls.Add(this.executionButton);
+            this.Controls.Add(this.thisCountryWarriors);
             this.Controls.Add(this.warriorNameLabel);
             this.Controls.Add(this.addWarriorButton);
             this.Controls.Add(this.countryDates);
@@ -144,5 +166,7 @@
         private System.Windows.Forms.Label countryDates;
         private System.Windows.Forms.Button addWarriorButton;
         private System.Windows.Forms.TextBox warriorNameLabel;
+        private System.Windows.Forms.ComboBox thisCountryWarriors;
+        private System.Windows.Forms.Button executionButton;
     }
 }

@@ -172,5 +172,10 @@ namespace _3SharpUzduotisSuDB
             }
             return temp;
         }
+
+        internal void RemoveWarrior(string warriorName)
+        {
+
+        }
     }
 }

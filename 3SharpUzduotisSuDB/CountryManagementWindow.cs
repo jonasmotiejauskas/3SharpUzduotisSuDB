@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace _3SharpUzduotisSuDB
@@ -10,6 +11,7 @@ namespace _3SharpUzduotisSuDB
     {
 
         DatabaseInterface dbInter = DatabaseInterface.Instance;
+        List<Karvedys> valstybesKarvedziai;
 
         public Valstybe country { get; set; }
         public List<Karvedys> troops = new List<Karvedys>();
@@ -18,6 +20,7 @@ namespace _3SharpUzduotisSuDB
         {
             InitializeComponent();
             RefreshCountry(countryName);
+            LoadWarriors();
         }
 
 
@@ -66,6 +69,37 @@ namespace _3SharpUzduotisSuDB
             {
                 dbInter.GenerateNewWarrior(warriorNameLabel.Text, new Random().Next(1, 50), country);
             }
+
+            LoadWarriors();
+        }
+
+        private void LoadWarriors()
+        {
+            var visiKarvedziai = dbInter.GetAllWarriors();
+
+            foreach (var b in visiKarvedziai)
+            {
+                if(b.Tarnauja == country)
+                {
+                    valstybesKarvedziai.Add(b);
+                }
+            }
+
+            var sts = new List<string>();
+
+            foreach (var b in valstybesKarvedziai)
+            {
+                var sb = new StringBuilder();
+                sb.Append(b.Vardas).Append(" ").Append(b.PulkuSkaicius.ToString());
+                sts.Add(sb.ToString());
+            }
+            thisCountryWarriors.DataSource = sts;
+        }
+
+        private void executionButton_Click(object sender, EventArgs e)
+        {
+            dbInter.RemoveWarrior(thisCountryWarriors.SelectedItem.ToString());
+            LoadWarriors();
         }
     }
 }
