@@ -108,12 +108,13 @@ namespace _3SharpUzduotisSuDB
              SqlCommand update = new SqlCommand();
              update.Connection = cn;
              update.CommandType = System.Data.CommandType.Text;
-             update.CommandText = "UPDATE ValstybeSet SET Pavadinimas = @NEWPAV WHERE Pavadinimas = @PAV";
+             update.CommandText = "UPDATE ValstybeSet SET Pavadinimas = @NEWPAV";
  
-             update.Parameters.AddWithValue("@PAV", oldName);
+             
              update.Parameters.Add(new SqlParameter("@NEWPAV", SqlDbType.NVarChar, 20, "Pavadinimas"));
- 
-             SqlDataAdapter da = new SqlDataAdapter("Select Pavadinimas FROM ValstybeSet", cn);
+
+             SqlDataAdapter da = new SqlDataAdapter("Select Id, Pavadinimas, Susikure FROM ValstybeSet WHERE Pavadinimas = '"+oldName+"'" , cn);
+             //update.Parameters.AddWithValue("@PAV", oldName);
              da.UpdateCommand = update;
  
              DataSet ds = new DataSet();
@@ -123,6 +124,8 @@ namespace _3SharpUzduotisSuDB
  
              da.Update(ds.Tables[0]);
              da.Dispose();
+             
+
          }
 
     Valstybe country;

@@ -75,6 +75,7 @@
             // countryNameLabel
             // 
             this.countryNameLabel.AutoSize = true;
+            this.countryNameLabel.BackColor = System.Drawing.Color.Transparent;
             this.countryNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.countryNameLabel.Location = new System.Drawing.Point(147, 24);
             this.countryNameLabel.Name = "countryNameLabel";
@@ -92,6 +93,7 @@
             // countryDates
             // 
             this.countryDates.AutoSize = true;
+            this.countryDates.BackColor = System.Drawing.Color.Transparent;
             this.countryDates.Location = new System.Drawing.Point(154, 72);
             this.countryDates.Name = "countryDates";
             this.countryDates.Size = new System.Drawing.Size(0, 13);

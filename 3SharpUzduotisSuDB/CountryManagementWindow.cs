@@ -100,29 +100,35 @@ namespace _3SharpUzduotisSuDB
 
         private void executionButton_Click(object sender, EventArgs e)
         {
-            dbInter.RemoveWarrior(thisCountryWarriors.SelectedItem.ToString());
-            LoadWarriors();
+            if(thisCountryWarriors.SelectedItem != null)
+            {
+                dbInter.RemoveWarrior(thisCountryWarriors.SelectedItem.ToString());
+                LoadWarriors();
+            }
         }
 
         private void warriorTrainButton_Click(object sender, EventArgs e)
         {
-            int chance = new Random().Next(0, 100);
-            if(chance < 20)
+            if (thisCountryWarriors.SelectedItem != null)
             {
-                dbInter.RemoveWarrior(thisCountryWarriors.SelectedItem.ToString());
-                MessageBox.Show("Your Warrior has accidentally Died!", "Failure", MessageBoxButtons.OK);
+                int chance = new Random().Next(0, 100);
+                if (chance < 20)
+                {
+                    dbInter.RemoveWarrior(thisCountryWarriors.SelectedItem.ToString());
+                    MessageBox.Show("Your Warrior has accidentally Died!", "Failure", MessageBoxButtons.OK);
+                }
+                else if (chance < 70)
+                {
+                    dbInter.TrainWarrior(thisCountryWarriors.SelectedItem.ToString(), 2);
+                    MessageBox.Show("Your Warrior feels stronger!", "Success", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    dbInter.TrainWarrior(thisCountryWarriors.SelectedItem.ToString(), -3);
+                    MessageBox.Show("Your Warrior feels tired!", "Failure", MessageBoxButtons.OK);
+                }
+                LoadWarriors();
             }
-            else if(chance < 70)
-            {
-                dbInter.TrainWarrior(thisCountryWarriors.SelectedItem.ToString(), 2);
-                MessageBox.Show("Your Warrior feels stronger!", "Success", MessageBoxButtons.OK);
-            }
-            else
-            {
-                dbInter.TrainWarrior(thisCountryWarriors.SelectedItem.ToString(), -3);
-                MessageBox.Show("Your Warrior feels tired!", "Failure", MessageBoxButtons.OK);
-            }
-            LoadWarriors();
         }
     }
 }
