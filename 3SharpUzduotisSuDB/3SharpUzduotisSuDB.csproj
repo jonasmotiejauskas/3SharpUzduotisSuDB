@@ -72,6 +72,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CountryManagementWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CountryManagementWindow.Designer.cs">
+      <DependentUpon>CountryManagementWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreateCountryWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,9 @@
     <Compile Include="Valstybe.cs">
       <DependentUpon>KaraiIrMusiai.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CountryManagementWindow.resx">
+      <DependentUpon>CountryManagementWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateCountryWindow.resx">
       <DependentUpon>CreateCountryWindow.cs</DependentUpon>
     </EmbeddedResource>
