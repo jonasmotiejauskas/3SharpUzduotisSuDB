@@ -175,7 +175,29 @@ namespace _3SharpUzduotisSuDB
 
         internal void RemoveWarrior(string warriorName)
         {
+            var query = from b in db.KarvedysSet select b;
 
+            foreach (var b in query)
+            {
+                if(b.Vardas == warriorName)
+                {
+                    db.KarvedysSet.Remove(b);
+                }
+            }
+
+            db.SaveChanges();
+        }
+
+        internal void TrainWarrior(string warName, int strModifier)
+        {
+            var query = from b in db.KarvedysSet where b.Vardas == warName select b;
+
+            foreach (var b in query)
+            {
+                b.PulkuSkaicius += strModifier;
+                db.Entry(b).State = System.Data.Entity.EntityState.Modified;
+                db.KarvedysSet.Attach(b);
+            }
         }
     }
 }

@@ -76,6 +76,7 @@ namespace _3SharpUzduotisSuDB
         private void LoadWarriors()
         {
             var visiKarvedziai = dbInter.GetAllWarriors();
+            valstybesKarvedziai = new List<Karvedys>();
 
             foreach (var b in visiKarvedziai)
             {
@@ -90,7 +91,7 @@ namespace _3SharpUzduotisSuDB
             foreach (var b in valstybesKarvedziai)
             {
                 var sb = new StringBuilder();
-                sb.Append(b.Vardas).Append(" ").Append(b.PulkuSkaicius.ToString());
+                sb.Append(b.Vardas);
                 sts.Add(sb.ToString());
             }
             thisCountryWarriors.DataSource = sts;
@@ -99,6 +100,27 @@ namespace _3SharpUzduotisSuDB
         private void executionButton_Click(object sender, EventArgs e)
         {
             dbInter.RemoveWarrior(thisCountryWarriors.SelectedItem.ToString());
+            LoadWarriors();
+        }
+
+        private void warriorTrainButton_Click(object sender, EventArgs e)
+        {
+            int chance = new Random().Next(0, 100);
+            if(chance < 20)
+            {
+                dbInter.RemoveWarrior(thisCountryWarriors.SelectedItem.ToString());
+                MessageBox.Show("Your Warrior has accidentally Died!", "Failure", MessageBoxButtons.OK);
+            }
+            else if(chance < 70)
+            {
+                dbInter.TrainWarrior(thisCountryWarriors.SelectedItem.ToString(), 2);
+                MessageBox.Show("Your Warrior feels stronger!", "Success", MessageBoxButtons.OK);
+            }
+            else
+            {
+                dbInter.TrainWarrior(thisCountryWarriors.SelectedItem.ToString(), -3);
+                MessageBox.Show("Your Warrior feels tired!", "Failure", MessageBoxButtons.OK);
+            }
             LoadWarriors();
         }
     }
