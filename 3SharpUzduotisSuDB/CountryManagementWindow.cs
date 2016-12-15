@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace _3SharpUzduotisSuDB
@@ -16,6 +12,7 @@ namespace _3SharpUzduotisSuDB
         DatabaseInterface dbInter = DatabaseInterface.Instance;
 
         public Valstybe country { get; set; }
+        public List<Karvedys> troops = new List<Karvedys>();
 
         public CountryManagementWindow(string countryName)
         {
@@ -51,18 +48,19 @@ namespace _3SharpUzduotisSuDB
 
         private void RefreshCountry(string countryName)
         {
-            using (var db = new KaraiIrMusiaiContainer())
-            {
-                var query = from b in db.ValstybeSet
-                            where b.Pavadinimas == countryName
-                            select b;
+            country = dbInter.GetCountryByName(countryName);
+            countryNameLabel.Text = country.Pavadinimas;
+            countryDates.Text = country.Susikure.ToShortDateString();
+        }
 
-                foreach (var b in query)
-                {
-                    country = b;
-                }
-            }
-            countryNameLabel.Text = countryName;
+        private void CountryManagementWindow_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addWarriorButton_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

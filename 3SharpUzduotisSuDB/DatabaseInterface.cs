@@ -3,6 +3,7 @@ using System.Configuration;
 using System;
 using System.Data;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace _3SharpUzduotisSuDB
 {
@@ -120,6 +121,24 @@ namespace _3SharpUzduotisSuDB
 
             da.Update(ds.Tables[0]);
             da.Dispose();
+        }
+
+        public Valstybe GetCountryByName(string countryName)
+        {
+            var country = new Valstybe();
+            using (var db = new KaraiIrMusiaiContainer())
+            {
+                var query = (from b in db.ValstybeSet
+                             where b.Pavadinimas == countryName
+                             orderby b.Id
+                             select b).Skip(0).Take(1);
+
+                foreach (var b in query)
+                {
+                    country = b;
+                }
+            }
+            return country;
         }
     }
 }
