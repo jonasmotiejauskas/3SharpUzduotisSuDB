@@ -32,6 +32,7 @@ namespace _3SharpUzduotisSuDB
         void IDisposable.Dispose()
         {
             cn.Close();
+            db.Dispose();
             instance = null;
         }
 
@@ -124,11 +125,12 @@ namespace _3SharpUzduotisSuDB
             da.Dispose();
         }
 
-        Valstybe country;
+        
 
         public Valstybe GetCountryByName(string countryName)
         {
-                var query = (from b in db.ValstybeSet
+            Valstybe country = new Valstybe();
+            var query = (from b in db.ValstybeSet
                              where b.Pavadinimas == countryName
                              orderby b.Id
                              select b).Skip(0).Take(1);
@@ -145,6 +147,30 @@ namespace _3SharpUzduotisSuDB
                 var warrior = new Karvedys { Vardas = name, PulkuSkaicius = power, Tarnauja = country };
                 db.KarvedysSet.Add(warrior);
                 db.SaveChanges();
+        }
+
+        public List<Karvedys> GetAllWarriors()
+        {
+            var temp = new List<Karvedys>();
+            var query = from b in db.KarvedysSet select b;
+
+            foreach (var b in query)
+            {
+                temp.Add(b);
+            }
+            return temp;
+        }
+
+        public List<Valstybe> GetAllCountrys()
+        {
+            var temp = new List<Valstybe>();
+            var query = from b in db.ValstybeSet select b;
+
+            foreach (var b in query)
+            {
+                temp.Add(b);
+            }
+            return temp;
         }
     }
 }

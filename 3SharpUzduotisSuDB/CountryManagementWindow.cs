@@ -67,6 +67,5 @@ namespace _3SharpUzduotisSuDB
                 dbInter.GenerateNewWarrior(warriorNameLabel.Text, new Random().Next(1, 50), country);
             }
         }
-
     }
 }

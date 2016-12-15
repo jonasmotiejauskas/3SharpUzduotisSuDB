@@ -35,6 +35,7 @@
             this.chooseCountryButton = new System.Windows.Forms.Button();
             this.countrys = new System.Windows.Forms.ComboBox();
             this.refreshCountrysButton = new System.Windows.Forms.Button();
+            this.allPowersButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // title1
@@ -105,11 +106,22 @@
             this.refreshCountrysButton.UseVisualStyleBackColor = true;
             this.refreshCountrysButton.Click += new System.EventHandler(this.refreshCountrysButton_Click);
             // 
+            // allPowersButton
+            // 
+            this.allPowersButton.Location = new System.Drawing.Point(199, 290);
+            this.allPowersButton.Name = "allPowersButton";
+            this.allPowersButton.Size = new System.Drawing.Size(135, 23);
+            this.allPowersButton.TabIndex = 7;
+            this.allPowersButton.Text = "All Country Powers";
+            this.allPowersButton.UseVisualStyleBackColor = true;
+            this.allPowersButton.Click += new System.EventHandler(this.allPowersButton_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(530, 379);
+            this.Controls.Add(this.allPowersButton);
             this.Controls.Add(this.refreshCountrysButton);
             this.Controls.Add(this.countrys);
             this.Controls.Add(this.chooseCountryButton);
@@ -135,6 +147,7 @@
         private System.Windows.Forms.Button chooseCountryButton;
         private System.Windows.Forms.ComboBox countrys;
         private System.Windows.Forms.Button refreshCountrysButton;
+        private System.Windows.Forms.Button allPowersButton;
     }
 }
 

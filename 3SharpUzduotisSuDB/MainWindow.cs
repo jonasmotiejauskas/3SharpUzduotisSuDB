@@ -43,5 +43,29 @@ namespace _3SharpUzduotisSuDB
                 Close();
             }           
         }
+
+        private void allPowersButton_Click(object sender, EventArgs e)
+        {
+            List<Karvedys> allWarriors = dbInter.GetAllWarriors();
+            List<Valstybe> allCountrys = dbInter.GetAllCountrys();
+
+            var sb = new StringBuilder();
+
+            var query = from warrior in allWarriors
+                        join country in allCountrys
+                        on warrior.Tarnauja equals country
+                        group warrior by country.Pavadinimas;
+
+            foreach (var rez in query)
+            {
+                foreach (var b in rez)
+                {
+                    sb.Append("Warrior Name: ").Append(b.Vardas).Append(", He serves: ").Append(b.Tarnauja.Pavadinimas).Append(", His power is: ").Append(b.PulkuSkaicius.ToString()).Append("\n");
+                }
+                sb.Append("\n");
+            }
+
+            MessageBox.Show(sb.ToString(), "Country Powers", MessageBoxButtons.OK);
+        }
     }
 }
