@@ -35,10 +35,13 @@ namespace _3SharpUzduotisSuDB
 
         private void chooseCountryButton_Click(object sender, EventArgs e)
         {
-            Hide();
-            var chooseCountry = new CountryManagementWindow();
-            chooseCountry.ShowDialog();
-            Close();
+            if(countrys.SelectedItem != null)
+            {
+                Hide();
+                var chooseCountry = new CountryManagementWindow(countrys.SelectedItem.ToString());
+                chooseCountry.ShowDialog();
+                Close();
+            }           
         }
     }
 }

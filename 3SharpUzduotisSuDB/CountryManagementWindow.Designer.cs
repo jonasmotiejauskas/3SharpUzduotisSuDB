@@ -31,11 +31,13 @@
             this.changeCountryNameButton = new System.Windows.Forms.Button();
             this.deleteCountryButton = new System.Windows.Forms.Button();
             this.backToMenuButton = new System.Windows.Forms.Button();
+            this.countryNameLabel = new System.Windows.Forms.Label();
+            this.changeNameInput = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // changeCountryNameButton
             // 
-            this.changeCountryNameButton.Location = new System.Drawing.Point(12, 101);
+            this.changeCountryNameButton.Location = new System.Drawing.Point(6, 33);
             this.changeCountryNameButton.Name = "changeCountryNameButton";
             this.changeCountryNameButton.Size = new System.Drawing.Size(135, 23);
             this.changeCountryNameButton.TabIndex = 0;
@@ -45,17 +47,17 @@
             // 
             // deleteCountryButton
             // 
-            this.deleteCountryButton.Location = new System.Drawing.Point(12, 130);
+            this.deleteCountryButton.Location = new System.Drawing.Point(6, 62);
             this.deleteCountryButton.Name = "deleteCountryButton";
             this.deleteCountryButton.Size = new System.Drawing.Size(135, 23);
             this.deleteCountryButton.TabIndex = 1;
-            this.deleteCountryButton.Text = "Delete Country";
+            this.deleteCountryButton.Text = "Delete This Country";
             this.deleteCountryButton.UseVisualStyleBackColor = true;
             this.deleteCountryButton.Click += new System.EventHandler(this.deleteCountryButton_Click);
             // 
             // backToMenuButton
             // 
-            this.backToMenuButton.Location = new System.Drawing.Point(12, 159);
+            this.backToMenuButton.Location = new System.Drawing.Point(383, 344);
             this.backToMenuButton.Name = "backToMenuButton";
             this.backToMenuButton.Size = new System.Drawing.Size(135, 23);
             this.backToMenuButton.TabIndex = 2;
@@ -63,11 +65,30 @@
             this.backToMenuButton.UseVisualStyleBackColor = true;
             this.backToMenuButton.Click += new System.EventHandler(this.backToMenuButton_Click);
             // 
+            // countryNameLabel
+            // 
+            this.countryNameLabel.AutoSize = true;
+            this.countryNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.countryNameLabel.Location = new System.Drawing.Point(147, 24);
+            this.countryNameLabel.Name = "countryNameLabel";
+            this.countryNameLabel.Size = new System.Drawing.Size(0, 55);
+            this.countryNameLabel.TabIndex = 3;
+            // 
+            // changeNameInput
+            // 
+            this.changeNameInput.Location = new System.Drawing.Point(6, 7);
+            this.changeNameInput.MaxLength = 20;
+            this.changeNameInput.Name = "changeNameInput";
+            this.changeNameInput.Size = new System.Drawing.Size(135, 20);
+            this.changeNameInput.TabIndex = 4;
+            // 
             // CountryManagementWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(530, 379);
+            this.Controls.Add(this.changeNameInput);
+            this.Controls.Add(this.countryNameLabel);
             this.Controls.Add(this.backToMenuButton);
             this.Controls.Add(this.deleteCountryButton);
             this.Controls.Add(this.changeCountryNameButton);
@@ -76,6 +97,7 @@
             this.Name = "CountryManagementWindow";
             this.Text = "My Country";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -84,5 +106,7 @@
         private System.Windows.Forms.Button changeCountryNameButton;
         private System.Windows.Forms.Button deleteCountryButton;
         private System.Windows.Forms.Button backToMenuButton;
+        private System.Windows.Forms.Label countryNameLabel;
+        private System.Windows.Forms.TextBox changeNameInput;
     }
 }

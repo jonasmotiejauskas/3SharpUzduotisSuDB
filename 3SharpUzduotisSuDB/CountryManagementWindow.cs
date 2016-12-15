@@ -12,18 +12,29 @@ namespace _3SharpUzduotisSuDB
 {
     public partial class CountryManagementWindow : Form
     {
-        public CountryManagementWindow()
+
+        DatabaseInterface dbInter = DatabaseInterface.Instance;
+
+        public Valstybe country { get; set; }
+
+        public CountryManagementWindow(string countryName)
         {
             InitializeComponent();
+            RefreshCountry(countryName);
         }
 
         private void changeCountryName_Click(object sender, EventArgs e)
         {
-
+            if (changeNameInput != null)
+            {
+                dbInter.UpdateCountrysName(country.Pavadinimas, changeNameInput.Text);
+                RefreshCountry(changeNameInput.Text);
+            }
         }
 
         private void deleteCountryButton_Click(object sender, EventArgs e)
         {
+            dbInter.DeleteCountry(country.Pavadinimas);
             Hide();
             var menu = new MainWindow();
             menu.ShowDialog();
@@ -36,6 +47,22 @@ namespace _3SharpUzduotisSuDB
             var menu = new MainWindow();
             menu.ShowDialog();
             Close();
+        }
+
+        private void RefreshCountry(string countryName)
+        {
+            using (var db = new KaraiIrMusiaiContainer())
+            {
+                var query = from b in db.ValstybeSet
+                            where b.Pavadinimas == countryName
+                            select b;
+
+                foreach (var b in query)
+                {
+                    country = b;
+                }
+            }
+            countryNameLabel.Text = countryName;
         }
     }
 }

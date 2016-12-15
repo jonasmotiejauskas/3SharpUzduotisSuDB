@@ -78,5 +78,48 @@ namespace _3SharpUzduotisSuDB
             }
             return allNames;
         }
+
+        public void DeleteCountry(string name)
+        {
+            SqlCommand delete = new SqlCommand();
+            delete.Connection = cn;
+            delete.CommandType = System.Data.CommandType.Text;
+            delete.CommandText = "DELETE FROM ValstybeSet WHERE Pavadinimas = @PAV";
+
+            delete.Parameters.AddWithValue("@PAV", name);
+
+            SqlDataAdapter da = new SqlDataAdapter("Select Pavadinimas FROM ValstybeSet", cn);
+            da.DeleteCommand = delete;
+
+            DataSet ds = new DataSet();
+            da.Fill(ds, "ValstybeSet");
+
+            ds.Tables[0].Rows[0].Delete();
+
+            da.Update(ds.Tables[0]);
+            da.Dispose();
+        }
+
+        public void UpdateCountrysName(string oldName, string newName)
+        {
+            SqlCommand update = new SqlCommand();
+            update.Connection = cn;
+            update.CommandType = System.Data.CommandType.Text;
+            update.CommandText = "UPDATE ValstybeSet SET Pavadinimas = @NEWPAV WHERE Pavadinimas = @PAV";
+
+            update.Parameters.AddWithValue("@PAV", oldName);
+            update.Parameters.Add(new SqlParameter("@NEWPAV", SqlDbType.NVarChar, 20, "Pavadinimas"));
+
+            SqlDataAdapter da = new SqlDataAdapter("Select Pavadinimas FROM ValstybeSet", cn);
+            da.UpdateCommand = update;
+
+            DataSet ds = new DataSet();
+            da.Fill(ds, "ValstybeSet");
+
+            ds.Tables[0].Rows[0]["Pavadinimas"] = newName;
+
+            da.Update(ds.Tables[0]);
+            da.Dispose();
+        }
     }
 }
